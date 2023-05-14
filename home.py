@@ -21,11 +21,7 @@ import streamlit as st
 st.set_page_config(layout="wide")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# marawn_pablo_cleaned=pd.read_csv(r'E:\Projects\Egyptian Rap\Clean-data\Marawn pablo cleaned.csv')
-# marawn_moussa_cleaned=pd.read_csv(r'E:\Projects\Egyptian Rap\Clean-data\Marawn moussa cleaned.csv')
-# Wegz_cleaned=pd.read_csv(r'E:\Projects\Egyptian Rap\Clean-data\Wegz cleaned.csv')
-# Afroto_cleaned=pd.read_csv(r'E:\Projects\Egyptian Rap\Clean-data\Afroto cleaned.csv')
-# abyo_cleaned=pd.read_csv(r'E:\Projects\Egyptian Rap\Clean-data\Abyusif cleaned.csv')
+
 
 vectorizer = TfidfVectorizer()
 
@@ -53,8 +49,7 @@ def display_wordcloud(artist_df,cmap='Reds'):
     reshaped_text = arabic_reshaper.reshape(mp_text)
     display_text = get_display(reshaped_text)
     word_counts=Counter(mp_text.split())
-    font_path=r'Assets\NotoNaskhArabic-VariableFont_wght.ttf'
-    # return_obj=wordcloud.visualize(display_text, per_word_coloring=False)
+    font_path=r'Assets/NotoNaskhArabic-VariableFont_wght.ttf'
     wordcloud = WordCloud (
                         font_path=font_path).generate(display_text)
     plt.imshow(wordcloud) # image show
@@ -97,7 +92,7 @@ def draw_compare_page():
             st.write(' ')
             st.write(' ')
             st.write(' ')
-            df2=pd.read_csv(f'Assets\{selection2} cleaned.csv')
+            df2=pd.read_csv(f'Assets/{selection2} cleaned.csv')
             df2.index=df2['Title_english']
             song2=st.selectbox(f'Choose a song from {selection2} list',df2.index,key=2)
             st.image(df2.loc[song2]['image_url'])
@@ -110,7 +105,7 @@ def draw_info_page():
         selection=st.selectbox('Choose The artist',artists)
         col1, col2,col3,col4 = st.columns(4)
         with col1:
-            df1=pd.read_csv(f'Assets\{selection} cleaned.csv')
+            df1=pd.read_csv(f'Assets/{selection} cleaned.csv')
             df1.index=df1['Title_english']
             st.write(f"<h2>{selection}<h2>",unsafe_allow_html=True)
             if selection == artists[0]:
