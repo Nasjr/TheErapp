@@ -83,7 +83,7 @@ def draw_compare_page():
             st.write(' ')
             st.write(' ')
             st.write(' ')
-            df1=pd.read_csv(f'Assets\{selection1} cleaned.csv')
+            df1=pd.read_csv(f'Assets/{selection1} cleaned.csv')
             df1.index=df1['Title_english']
             song1=st.selectbox(f'Choose a song from {selection1} list',df1.index,key=1)
             st.image(df1.loc[song1]['image_url'])
